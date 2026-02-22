@@ -45,7 +45,10 @@ INSTALLED_APPS = [
     
     # Local apps
     'api',
+    'accounts',
 ]
+
+AUTH_USER_MODEL = 'accounts.User'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware', # CORS first

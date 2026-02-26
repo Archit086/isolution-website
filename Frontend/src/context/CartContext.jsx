@@ -21,24 +21,29 @@ export const CartProvider = ({ children }) => {
     }, [cartItems]);
 
     const addToCart = (product, quantity = 1) => {
+        const normalizedProduct = {
+            ...product,
+            price: parseFloat(product.price || 0)
+        };
+
         setCartItems(prev => {
-            const existing = prev.find(item => item.id === product.id);
+            const existing = prev.find(item => item.id === normalizedProduct.id);
             if (existing) {
                 // Check stock bounds
                 const newQty = existing.quantity + quantity;
-                if (newQty > product.stock) {
-                    toast.error(`Cannot add more. Only ${product.stock} units available.`);
+                if (newQty > normalizedProduct.stock) {
+                    toast.error(`Cannot add more. Only ${normalizedProduct.stock} units available.`);
                     return prev;
                 }
-                toast.success(`Updated ${product.name} quantity to ${newQty}.`);
-                return prev.map(item => item.id === product.id ? { ...item, quantity: newQty } : item);
+                toast.success(`Updated ${normalizedProduct.name} quantity to ${newQty}.`);
+                return prev.map(item => item.id === normalizedProduct.id ? { ...item, quantity: newQty } : item);
             } else {
-                if (quantity > product.stock) {
-                    toast.error(`Cannot add more than available stock (${product.stock}).`);
+                if (quantity > normalizedProduct.stock) {
+                    toast.error(`Cannot add more than available stock (${normalizedProduct.stock}).`);
                     return prev;
                 }
-                toast.success(`Added ${product.name} to provision list.`);
-                return [...prev, { ...product, quantity }];
+                toast.success(`Added ${normalizedProduct.name} to provision list.`);
+                return [...prev, { ...normalizedProduct, quantity }];
             }
         });
     };
@@ -56,7 +61,7 @@ export const CartProvider = ({ children }) => {
         setCartItems([]);
     };
 
-    const cartTotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+    const cartTotal = cartItems.reduce((total, item) => total + (parseFloat(item.price || 0) * item.quantity), 0);
     const cartCount = cartItems.reduce((count, item) => count + item.quantity, 0);
 
     return (

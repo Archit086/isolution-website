@@ -94,7 +94,7 @@ const Cart = () => {
                                             {item.category || 'General'}
                                         </span>
                                         <h3 className="text-xl font-bold text-charcoal mb-1">{item.name}</h3>
-                                        <p className="text-sm font-bold text-text-secondary tracking-widest uppercase">₹{item.price.toFixed(2)}/unit</p>
+                                        <p className="text-sm font-bold text-text-secondary tracking-widest uppercase">₹{parseFloat(item.price || 0).toFixed(2)}/unit</p>
                                     </div>
 
                                     <div className="flex items-center gap-6 mt-4 sm:mt-0">
@@ -116,7 +116,7 @@ const Cart = () => {
                                             </button>
                                         </div>
                                         <div className="w-24 text-right">
-                                            <span className="font-display font-bold text-2xl text-charcoal">₹{(item.price * item.quantity).toFixed(2)}</span>
+                                            <span className="font-display font-bold text-2xl text-charcoal">₹{(parseFloat(item.price || 0) * item.quantity).toFixed(2)}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -131,7 +131,7 @@ const Cart = () => {
                                 <div className="space-y-4 mb-8">
                                     <div className="flex justify-between items-center text-sm font-bold text-text-secondary uppercase tracking-widest">
                                         <span>Subtotal</span>
-                                        <span className="text-charcoal">₹{cartTotal.toFixed(2)}</span>
+                                        <span className="text-charcoal">₹{(cartTotal || 0).toFixed(2)}</span>
                                     </div>
                                     <div className="flex justify-between items-center text-sm font-bold text-text-secondary uppercase tracking-widest">
                                         <span>Tax & Compliance</span>
@@ -141,7 +141,7 @@ const Cart = () => {
 
                                 <div className="mb-8 pt-6 border-t border-warm-border flex justify-between items-end">
                                     <span className="font-bold text-charcoal uppercase tracking-widest text-sm">Estimated Total</span>
-                                    <span className="font-display font-bold text-4xl text-charcoal">₹{cartTotal.toFixed(2)}</span>
+                                    <span className="font-display font-bold text-4xl text-charcoal">₹{(cartTotal || 0).toFixed(2)}</span>
                                 </div>
 
                                 <button

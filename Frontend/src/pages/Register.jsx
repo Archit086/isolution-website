@@ -12,7 +12,7 @@ const Register = () => {
         email: '',
         password: '',
         confirmPassword: '',
-        role: 'customer'
+        role: 'Consumer'
     });
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState({});
@@ -22,8 +22,12 @@ const Register = () => {
         if (!formData.name) errs.name = 'Full Name is required';
         if (!formData.email) errs.email = 'Email is required';
         else if (!/\S+@\S+\.\S+/.test(formData.email)) errs.email = 'Email address is invalid';
+        
         if (!formData.password) errs.password = 'Password is required';
-        else if (formData.password.length < 6) errs.password = 'Password must be at least 6 characters';
+        else if (formData.password.length < 8) errs.password = 'Password must be at least 8 characters';
+        else if (/^\d+$/.test(formData.password)) errs.password = 'Password cannot be entirely numeric';
+        else if (['password', '12345678', 'qwertyuiop', 'password123'].includes(formData.password.toLowerCase())) errs.password = 'Password is too common';
+        
         if (formData.password !== formData.confirmPassword) errs.confirmPassword = 'Passwords do not match';
         setErrors(errs);
         return Object.keys(errs).length === 0;
@@ -40,7 +44,21 @@ const Register = () => {
 
         setIsLoading(true);
         try {
-            const res = await api.post('/accounts/register/', formData);
+            const roleMap = {
+                Consumer: "Customer",
+                Authority: "Authority",
+                Distributor: "Distributor",
+                Admin: "Admin"
+            };
+
+            const payload = {
+                email: formData.email,
+                password: formData.password,
+                role: roleMap[formData.role]
+            };
+            console.log("Registration payload:", payload);
+
+            const res = await api.post('/accounts/register/', payload);
             if (res.status === 201) {
                 toast.success('Registration successful! Please authenticate.');
                 navigate('/login');
@@ -48,9 +66,12 @@ const Register = () => {
                 toast.error('Registration failed. Try again.');
             }
         } catch (error) {
-            console.error('Registration error:', error.response?.data);
-            const errorMsg = error.response?.data?.email?.[0] || error.response?.data?.detail || 'Registration failed. Try again.';
-            toast.error(errorMsg);
+            console.error("Registration Error:", error.response?.data);
+            toast.error(
+                error.response?.data?.role?.[0] ||
+                error.response?.data?.detail ||
+                "Registration failed"
+            );
         } finally {
             setIsLoading(false);
         }
@@ -128,8 +149,8 @@ const Register = () => {
                                 name="role" value={formData.role} onChange={handleChange}
                                 className="w-full px-4 py-3 rounded-none border-b-2 border-warm-border bg-transparent focus:bg-cream-deep focus:border-sage-deep outline-none transition-colors text-charcoal font-medium"
                             >
-                                <option value="customer">Consumer</option>
-                                <option value="distributor">Distributor</option>
+                                <option value="Consumer">Consumer</option>
+                                <option value="Distributor">Distributor</option>
                             </select>
                         </div>
 

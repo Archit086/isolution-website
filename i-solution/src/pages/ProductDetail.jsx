@@ -59,7 +59,7 @@ const ProductDetail = () => {
 
         setIsOrdering(true);
         try {
-            await api.post('/orders/', { product_id: product.id, quantity: qty });
+            await api.post('/orders/', { items: [{ product: product.id, quantity: qty }] });
             toast.success('Order placed successfully!');
             setProduct(prev => ({ ...prev, stock: prev.stock - qty }));
             setQty(1);

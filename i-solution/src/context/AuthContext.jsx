@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
         try {
-            const res = await api.post('/token/', { email, password });
+            const res = await api.post('/accounts/login/', { email, password });
             const { access, refresh } = res.data;
             localStorage.setItem('access', access);
             localStorage.setItem('refresh', refresh);

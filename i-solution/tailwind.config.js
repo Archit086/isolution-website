@@ -7,64 +7,74 @@ export default {
     theme: {
         extend: {
             colors: {
-                primary: {
-                    DEFAULT: '#0A2463',
-                    light: '#1E3A8A'
+                ink: '#2C2416',
+                charcoal: '#3D3529',
+                espresso: '#5C4A32',
+                sage: {
+                    deep: '#5F7052',
+                    mid: '#7A8C6E',
+                    light: '#9BAF8D',
+                    mist: '#D4E0CC'
                 },
-                accent: {
-                    DEFAULT: '#2DD4BF',
-                    soft: '#CCFBF1'
+                amber: {
+                    gold: '#D4880A',
+                    warm: '#F0A500',
+                    soft: '#FBE8B8'
                 },
-                success: '#10B981',
-                warning: '#F59E0B',
-                danger: '#EF4444',
-                surface: {
-                    DEFAULT: '#FFFFFF',
-                    muted: '#F8FAFC'
+                terracotta: {
+                    DEFAULT: '#C26A45',
+                    soft: '#F5DDD4'
                 },
-                border: '#E2E8F0',
+                cream: {
+                    base: '#F5F3ED',
+                    card: '#EEEADE',
+                    deep: '#E4DFCF',
+                    white: '#FDFCF9'
+                },
+                warm: {
+                    border: '#D5CEBC'
+                },
                 text: {
-                    primary: '#0F172A',
-                    secondary: '#64748B',
-                    inverse: '#FFFFFF'
+                    primary: '#2C2416',
+                    secondary: '#6B5E4A',
+                    placeholder: '#9A9082'
+                },
+                success: {
+                    DEFAULT: '#5F7052',
+                    soft: '#D4E0CC'
+                },
+                warning: {
+                    DEFAULT: '#F0A500',
+                    soft: '#FBE8B8'
+                },
+                danger: {
+                    DEFAULT: '#C26A45',
+                    soft: '#F5DDD4'
                 }
             },
             fontFamily: {
-                sans: ['"DM Sans"', 'sans-serif'],
-                display: ['Sora', 'sans-serif'],
-                mono: ['"JetBrains Mono"', 'monospace']
-            },
-            fontSize: {
-                'xs': '0.75rem',
-                'sm': '0.8125rem',
-                'base': '0.9375rem',
-                'lg': '1.125rem',
-                'xl': '1.5rem',
-                '2xl': '2.25rem',
-                '3xl': '3.5rem',
+                display: ['Cormorant Garamond', 'serif'],
+                script: ['Cormorant Garamond', 'serif'],
+                body: ['Outfit', 'sans-serif'],
+                mono: ['IBM Plex Mono', 'monospace'],
             },
             animation: {
-                fadeInUp: 'fadeInUp 0.4s ease-out forwards',
-                float: 'float 3s ease-in-out infinite',
-                shimmer: 'shimmer 1.5s infinite',
-                pulseRing: 'pulseRing 1.5s cubic-bezier(0.24, 0, 0.38, 1) infinite',
+                fadeInUp: 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                shimmer: 'shimmer 2s infinite linear',
+                pulseRing: 'pulseRing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             },
             keyframes: {
                 fadeInUp: {
-                    '0%': { opacity: '0', transform: 'translateY(20px)' },
+                    '0%': { opacity: '0', transform: 'translateY(30px)' },
                     '100%': { opacity: '1', transform: 'translateY(0)' },
-                },
-                float: {
-                    '0%, 100%': { transform: 'translateY(0px)' },
-                    '50%': { transform: 'translateY(-12px)' },
                 },
                 shimmer: {
                     '0%': { backgroundPosition: '-1000px 0' },
                     '100%': { backgroundPosition: '1000px 0' },
                 },
                 pulseRing: {
-                    '0%': { transform: 'scale(0.8)', opacity: '0.8' },
-                    '100%': { transform: 'scale(1.5)', opacity: '0' },
+                    '0%, 100%': { transform: 'scale(1)', opacity: '1' },
+                    '50%': { transform: 'scale(1.5)', opacity: '0.3' },
                 }
             }
         },

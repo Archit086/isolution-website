@@ -52,77 +52,78 @@ const Register = () => {
     };
 
     return (
-        <div className="flex min-h-screen bg-surface-muted overflow-hidden">
-            <div className="hidden lg:flex lg:w-1/2 bg-primary relative items-center justify-center p-12">
-                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjMEEyNDYzIiBmaWxsLW9wYWNpdHk9IjEiPjwvcmVjdD4KPHBhdGggZD0iTTAgMEw4IDhaTTAgOEw4IDBaIiBzdHJva2U9IiMxRTNBOEEiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=')] opacity-20"></div>
-                <div className="relative z-10 text-white max-w-lg mb-20 animate-fadeInUp">
-                    <Link to="/" className="text-3xl font-display font-bold tracking-tight text-white block mb-12 hover:text-accent transition">I-Solution</Link>
-                    <h2 className="text-5xl font-display font-bold leading-tight mb-6 mt-12">
-                        Join the ecosystem.
+        <div className="flex min-h-screen bg-cream-base overflow-hidden font-body">
+            <div className="hidden lg:flex lg:w-1/2 bg-charcoal relative items-center justify-center p-12 overflow-hidden border-r border-[#3D3529]">
+                <div className="absolute inset-0 grain-bg mix-blend-overlay opacity-30"></div>
+
+                <div className="relative z-10 max-w-lg animate-fadeInUp">
+                    <Link to="/" className="font-script text-3xl font-bold tracking-tight text-sage-mist block mb-8 hover:text-cream-white transition italic">I-Solution</Link>
+                    <h2 className="text-5xl font-display font-bold leading-tight mb-8 mt-12 text-cream-white">
+                        Join the clinical ecosystem.
                     </h2>
-                    <p className="text-xl text-accent-soft/80 leading-relaxed">
-                        Create an account to browse compliant products, track orders, or manage large scale distributions.
+                    <p className="text-xl text-[#9A9082] leading-relaxed">
+                        Create an authorized node to browse compliant products, authorize formulations, or manage large scale distributions securely.
                     </p>
                 </div>
             </div>
 
             <div className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-12 animate-fadeInUp overflow-y-auto h-screen" style={{ animationDelay: '100ms' }}>
-                <div className="w-full max-w-md bg-white rounded-3xl shadow-xl border border-border p-10 my-auto">
+                <div className="w-full max-w-md bg-cream-card rounded-xl border border-warm-border p-10 my-auto shadow-2xl">
                     <div className="text-center mb-8">
-                        <h2 className="text-3xl font-display font-bold text-primary mb-2">Create Account</h2>
-                        <p className="text-text-secondary font-medium">Join I-Solution as a customer or distributor.</p>
+                        <h2 className="text-4xl font-display font-bold text-charcoal mb-2">Network Initialization</h2>
+                        <p className="text-text-secondary font-medium tracking-wide">Register your operational role.</p>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-5">
+                    <form onSubmit={handleSubmit} className="space-y-6">
                         <div>
-                            <label className="block text-xs font-bold text-text-secondary uppercase tracking-wider mb-2">Full Name</label>
+                            <label className="block text-xs font-bold text-text-secondary uppercase tracking-[0.15em] mb-2">Entity Name</label>
                             <input
                                 type="text" name="name" value={formData.name} onChange={handleChange}
-                                className={`w-full px-4 py-3 rounded-xl border bg-surface-muted focus:bg-white focus:ring-2 focus:ring-accent outline-none transition ${errors.name ? 'border-danger focus:ring-danger' : 'border-border'}`}
-                                placeholder="John Doe"
+                                className={`w-full px-4 py-3 rounded-none border-b-2 bg-transparent focus:bg-cream-deep focus:border-sage-deep outline-none transition-colors ${errors.name ? 'border-terracotta' : 'border-warm-border'}`}
+                                placeholder="Corporate Name or User"
                             />
-                            {errors.name && <p className="text-danger text-xs mt-1.5 font-medium">{errors.name}</p>}
+                            {errors.name && <p className="text-terracotta text-xs mt-1.5 font-bold tracking-wide">{errors.name}</p>}
                         </div>
 
                         <div>
-                            <label className="block text-xs font-bold text-text-secondary uppercase tracking-wider mb-2">Email</label>
+                            <label className="block text-xs font-bold text-text-secondary uppercase tracking-[0.15em] mb-2">Email Identity</label>
                             <input
                                 type="text" name="email" value={formData.email} onChange={handleChange}
-                                className={`w-full px-4 py-3 rounded-xl border bg-surface-muted focus:bg-white focus:ring-2 focus:ring-accent outline-none transition ${errors.email ? 'border-danger focus:ring-danger' : 'border-border'}`}
-                                placeholder="john@example.com"
+                                className={`w-full px-4 py-3 rounded-none border-b-2 bg-transparent focus:bg-cream-deep focus:border-sage-deep outline-none transition-colors ${errors.email ? 'border-terracotta' : 'border-warm-border'}`}
+                                placeholder="identifier@domain.com"
                             />
-                            {errors.email && <p className="text-danger text-xs mt-1.5 font-medium">{errors.email}</p>}
+                            {errors.email && <p className="text-terracotta text-xs mt-1.5 font-bold tracking-wide">{errors.email}</p>}
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <label className="block text-xs font-bold text-text-secondary uppercase tracking-wider mb-2">Password</label>
+                                <label className="block text-xs font-bold text-text-secondary uppercase tracking-[0.15em] mb-2">Access Token</label>
                                 <input
                                     type="password" name="password" value={formData.password} onChange={handleChange}
-                                    className={`w-full px-4 py-3 rounded-xl border bg-surface-muted focus:bg-white focus:ring-2 focus:ring-accent outline-none transition ${errors.password ? 'border-danger focus:ring-danger' : 'border-border'}`}
+                                    className={`w-full px-4 py-3 rounded-none border-b-2 bg-transparent focus:bg-cream-deep focus:border-sage-deep outline-none transition-colors ${errors.password ? 'border-terracotta' : 'border-warm-border'}`}
                                     placeholder="••••••••"
                                 />
-                                {errors.password && <p className="text-danger text-xs mt-1.5 font-medium">{errors.password}</p>}
+                                {errors.password && <p className="text-terracotta text-xs mt-1.5 font-bold tracking-wide">{errors.password}</p>}
                             </div>
 
                             <div>
-                                <label className="block text-xs font-bold text-text-secondary uppercase tracking-wider mb-2">Confirm</label>
+                                <label className="block text-xs font-bold text-text-secondary uppercase tracking-[0.15em] mb-2">Verify</label>
                                 <input
                                     type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange}
-                                    className={`w-full px-4 py-3 rounded-xl border bg-surface-muted focus:bg-white focus:ring-2 focus:ring-accent outline-none transition ${errors.confirmPassword ? 'border-danger focus:ring-danger' : 'border-border'}`}
+                                    className={`w-full px-4 py-3 rounded-none border-b-2 bg-transparent focus:bg-cream-deep focus:border-sage-deep outline-none transition-colors ${errors.confirmPassword ? 'border-terracotta' : 'border-warm-border'}`}
                                     placeholder="••••••••"
                                 />
-                                {errors.confirmPassword && <p className="text-danger text-xs mt-1.5 font-medium">{errors.confirmPassword}</p>}
+                                {errors.confirmPassword && <p className="text-terracotta text-xs mt-1.5 font-bold tracking-wide">{errors.confirmPassword}</p>}
                             </div>
                         </div>
 
                         <div>
-                            <label className="block text-xs font-bold text-text-secondary uppercase tracking-wider mb-2">Role</label>
+                            <label className="block text-xs font-bold text-text-secondary uppercase tracking-[0.15em] mb-2">Operational Role</label>
                             <select
                                 name="role" value={formData.role} onChange={handleChange}
-                                className="w-full px-4 py-3 rounded-xl border border-border bg-surface-muted focus:bg-white focus:ring-2 focus:ring-accent outline-none transition text-primary font-medium"
+                                className="w-full px-4 py-3 rounded-none border-b-2 border-warm-border bg-transparent focus:bg-cream-deep focus:border-sage-deep outline-none transition-colors text-charcoal font-medium"
                             >
-                                <option value="customer">Customer</option>
+                                <option value="customer">Consumer</option>
                                 <option value="distributor">Distributor</option>
                             </select>
                         </div>
@@ -130,14 +131,14 @@ const Register = () => {
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="w-full bg-primary text-white py-3.5 rounded-xl font-bold mt-6 hover:bg-primary-light active:scale-[0.98] transition shadow-lg flex justify-center items-center h-[52px]"
+                            className="w-full bg-amber-warm text-ink py-4 rounded-none uppercase tracking-[0.1em] font-extrabold mt-10 hover:bg-amber-gold active:scale-[0.98] transition flex justify-center items-center h-[56px] shadow-lg"
                         >
-                            {isLoading ? <Loader type="spinner" /> : 'Register'}
+                            {isLoading ? <Loader type="spinner" /> : 'Request Provisioning'}
                         </button>
                     </form>
 
-                    <p className="text-center mt-8 text-sm text-text-secondary font-medium">
-                        Already have an account? <Link to="/login" className="text-accent font-bold hover:underline">Sign In</Link>
+                    <p className="text-center mt-10 text-sm text-text-secondary font-medium tracking-wide">
+                        Already initialized? <Link to="/login" className="text-sage-deep font-bold border-b border-sage-deep hover:text-ink hover:border-ink transition-colors pb-0.5">Authenticate</Link>
                     </p>
                 </div>
             </div>

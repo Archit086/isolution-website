@@ -5,23 +5,23 @@ const ProductCard = ({ id, name, price, category, stock, complianceStatus }) => 
     const navigate = useNavigate();
 
     const getStockBadge = () => {
-        if (stock === 0) return <span className="bg-danger/10 text-danger rounded-full px-3 py-0.5 text-xs font-semibold">Out of Stock</span>;
-        if (stock < 10) return <span className="bg-warning/10 text-warning rounded-full px-3 py-0.5 text-xs font-semibold">Low Stock</span>;
-        return <span className="bg-success/10 text-success rounded-full px-3 py-0.5 text-xs font-semibold">In Stock</span>;
+        if (stock === 0) return <span className="bg-terracotta/5 border border-terracotta text-terracotta rounded-none px-3 py-1 text-[10px] uppercase tracking-widest font-bold">Out of Stock</span>;
+        if (stock < 10) return <span className="bg-amber-gold/5 border border-amber-gold text-amber-gold rounded-none px-3 py-1 text-[10px] uppercase tracking-widest font-bold">Low Stock</span>;
+        return <span className="bg-sage-deep/5 border border-sage-deep text-sage-deep rounded-none px-3 py-1 text-[10px] uppercase tracking-widest font-bold">In Stock</span>;
     };
 
     const getComplianceBadge = () => {
-        if (complianceStatus === 'Approved') return <div className="w-2 h-2 rounded-full bg-success"></div>;
-        return <div className="w-2 h-2 rounded-full bg-warning animate-pulseRing"></div>;
+        if (complianceStatus === 'Approved') return <div className="w-2 h-2 rounded-none bg-sage-deep"></div>;
+        return <div className="w-2 h-2 rounded-none bg-amber-gold animate-pulseRing"></div>;
     };
 
     return (
         <div
             onClick={() => navigate(`/products/${id}`)}
-            className="rounded-2xl bg-white shadow-sm hover:shadow-md hover:ring-1 hover:ring-accent/30 transition-all duration-200 cursor-pointer p-6 flex flex-col h-full"
+            className="rounded-none bg-cream-card border border-warm-border shadow-sm hover:shadow-md hover:border-charcoal transition-all duration-300 cursor-pointer p-6 flex flex-col h-full group"
         >
-            <div className="flex justify-between items-start mb-4">
-                <span className="rounded-full bg-accent-soft text-accent text-[10px] uppercase tracking-wider font-semibold px-3 py-1">
+            <div className="flex justify-between items-start mb-6">
+                <span className="bg-sage-deep/10 text-sage-deep border border-sage-deep text-[10px] uppercase tracking-[0.15em] font-bold px-3 py-1">
                     {category}
                 </span>
                 <div className="flex items-center gap-2" title={`Compliance: ${complianceStatus}`}>
@@ -29,17 +29,17 @@ const ProductCard = ({ id, name, price, category, stock, complianceStatus }) => 
                 </div>
             </div>
 
-            <div className="flex-1">
-                <h4 className="font-semibold text-lg text-primary mb-2 line-clamp-2">{name}</h4>
+            <div className="flex-1 mb-6">
+                <h4 className="font-bold text-xl text-charcoal mb-2 leading-snug group-hover:text-espresso transition-colors">{name}</h4>
             </div>
 
-            <div className="mt-4 pt-4 border-t border-border flex justify-between items-end">
+            <div className="mt-auto pt-6 border-t border-warm-border flex justify-between items-end">
                 <div>
-                    <span className="block text-2xl font-bold font-display text-primary">${price}</span>
+                    <span className="block text-3xl font-bold font-display text-charcoal mb-2">${price}</span>
                     <div className="mt-1">{getStockBadge()}</div>
                 </div>
-                <button className="bg-transparent text-primary text-sm font-semibold hover:text-accent transition">
-                    View Details &rarr;
+                <button className="bg-transparent text-charcoal text-xs uppercase tracking-widest font-bold hover:text-sage-deep transition-colors pb-1 border-b-2 border-transparent hover:border-sage-deep">
+                    View &rarr;
                 </button>
             </div>
         </div>

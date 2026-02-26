@@ -39,9 +39,9 @@ const Sidebar = () => {
     const navItems = getNavItems();
 
     return (
-        <div className="w-64 bg-primary text-white h-screen flex flex-col pt-6 fixed left-0 top-0 shadow-xl z-20">
+        <div className="w-64 bg-charcoal text-cream-white h-screen flex flex-col pt-6 fixed left-0 top-0 shadow-xl z-20">
             <div className="px-6 mb-8">
-                <h1 className="text-2xl font-bold font-display text-white tracking-tight">I-Solution</h1>
+                <h1 className="text-2xl font-bold font-display text-cream-white tracking-tight">I-Solution</h1>
             </div>
 
             <div className="flex-1 overflow-y-auto px-2 space-y-2">
@@ -51,32 +51,32 @@ const Sidebar = () => {
                         <NavLink
                             key={idx}
                             to={item.path}
-                            className={`flex items-center gap-3 py-3 px-4 rounded-xl mx-2 transition-all duration-300 ${isActive
-                                    ? 'bg-primary-light text-white border-l-4 border-accent'
-                                    : 'text-text-secondary hover:bg-primary-light hover:text-white border-l-4 border-transparent'
+                            className={`flex items-center gap-3 py-3 px-4 rounded-none mx-2 transition-all duration-300 ${isActive
+                                ? 'bg-espresso text-cream-white border-l-4 border-amber-warm'
+                                : 'text-text-placeholder hover:bg-espresso hover:text-cream-white border-l-4 border-transparent'
                                 }`}
                         >
                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
                             </svg>
-                            <span className="font-medium">{item.label}</span>
+                            <span className="font-body font-medium">{item.label}</span>
                         </NavLink>
                     );
                 })}
             </div>
 
-            <div className="p-4 border-t border-primary-light mt-auto">
-                <div className="bg-primary-light rounded-xl p-4 flex items-center justify-between group hover:bg-[#2A4B9A] transition cursor-pointer">
+            <div className="p-4 border-t border-espresso mt-auto">
+                <div className="bg-espresso rounded-none p-4 flex items-center justify-between group hover:bg-charcoal transition cursor-pointer">
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-accent text-primary flex items-center justify-center font-bold text-sm">
+                        <div className="w-10 h-10 rounded-full bg-sage-deep text-cream-white flex items-center justify-center font-bold text-sm">
                             {user ? user.substring(0, 2).toUpperCase() : 'U'}
                         </div>
                         <div>
-                            <p className="text-sm font-semibold truncate w-24">{user || 'User'}</p>
-                            <span className="text-xs text-accent-soft uppercase tracking-wider">{role}</span>
+                            <p className="text-sm font-semibold truncate w-24 text-cream-white font-body">{user || 'User'}</p>
+                            <span className="text-xs text-amber-soft uppercase tracking-wider font-body">{role}</span>
                         </div>
                     </div>
-                    <button onClick={logout} className="text-text-secondary hover:text-white transition">
+                    <button onClick={logout} className="text-text-placeholder hover:text-cream-white transition">
                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                         </svg>

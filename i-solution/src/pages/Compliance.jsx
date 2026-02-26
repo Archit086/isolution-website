@@ -47,27 +47,27 @@ const Compliance = () => {
 
     if (role === 'admin') {
         return (
-            <div className="flex flex-col h-full animate-fadeInUp">
-                <h2 className="text-2xl font-display font-bold text-primary mb-6">Compliance Records</h2>
-                <div className="bg-white rounded-2xl shadow-sm border border-border flex-1 overflow-hidden">
+            <div className="flex flex-col h-full animate-fadeInUp font-body">
+                <h2 className="text-4xl font-display font-bold text-charcoal mb-6">Compliance Records</h2>
+                <div className="bg-cream-card rounded-none shadow-sm border border-warm-border flex-1 overflow-hidden">
                     <table className="w-full text-left border-collapse">
-                        <thead className="bg-surface-muted border-b border-border">
+                        <thead className="bg-cream-deep border-b-2 border-warm-border">
                             <tr>
-                                <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-wider">Doc ID</th>
-                                <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-wider">Title / Description</th>
-                                <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-wider">Uploaded By</th>
-                                <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-wider">Date</th>
-                                <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-wider">Status</th>
-                                <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-wider text-right">Actions</th>
+                                <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-[0.1em]">Doc ID</th>
+                                <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-[0.1em]">Title / Description</th>
+                                <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-[0.1em]">Uploaded By</th>
+                                <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-[0.1em]">Date</th>
+                                <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-[0.1em]">Status</th>
+                                <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-[0.1em] text-right">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {documents.map((doc, i) => (
-                                <tr key={doc.id} className="border-b border-border hover:bg-surface-muted transition group animate-fadeInUp" style={{ animationDelay: `${i * 40}ms` }}>
-                                    <td className="py-4 px-6 font-mono font-medium text-sm text-primary">{doc.id}</td>
-                                    <td className="py-4 px-6 font-semibold text-text-primary text-sm">
+                                <tr key={doc.id} className="border-b border-warm-border hover:bg-cream-white transition-colors group animate-fadeInUp" style={{ animationDelay: `${i * 40}ms` }}>
+                                    <td className="py-4 px-6 font-mono font-bold text-sm text-charcoal">{doc.id}</td>
+                                    <td className="py-4 px-6 font-semibold text-ink text-sm">
                                         <div className="flex items-center gap-3">
-                                            <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <svg className="w-5 h-5 text-sage-deep" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                             </svg>
                                             {doc.title}
@@ -77,12 +77,12 @@ const Compliance = () => {
                                     <td className="py-4 px-6 text-sm text-text-secondary">{doc.date}</td>
                                     <td className="py-4 px-6">
                                         <div className="flex items-center gap-2">
-                                            <div className={`w-2 h-2 rounded-full ${doc.status === 'Approved' ? 'bg-success' : 'bg-warning animate-pulseRing'}`}></div>
-                                            <span className="text-sm font-semibold">{doc.status}</span>
+                                            <div className={`w-2 h-2 rounded-none ${doc.status === 'Approved' ? 'bg-sage-deep' : 'bg-amber-gold animate-pulseRing'}`}></div>
+                                            <span className="text-sm font-semibold tracking-wide text-charcoal">{doc.status}</span>
                                         </div>
                                     </td>
                                     <td className="py-4 px-6 text-right">
-                                        <button className="text-danger hover:text-red-700 font-semibold text-sm transition opacity-0 group-hover:opacity-100">Delete</button>
+                                        <button className="text-terracotta hover:text-ink font-bold uppercase tracking-widest text-xs transition opacity-0 group-hover:opacity-100">Delete</button>
                                     </td>
                                 </tr>
                             ))}
@@ -94,28 +94,28 @@ const Compliance = () => {
     }
 
     return (
-        <div className="flex flex-col h-full animate-fadeInUp">
+        <div className="flex flex-col h-full animate-fadeInUp font-body">
             <div className="mb-8">
-                <h2 className="text-2xl font-display font-bold text-primary mb-2">Compliance Queue</h2>
-                <p className="text-text-secondary text-sm">Review, verify, and approve product regulatory documents.</p>
+                <h2 className="text-4xl font-display font-bold text-charcoal mb-2">Compliance Queue</h2>
+                <p className="text-text-secondary text-sm tracking-wide">Review, verify, and approve product regulatory documents.</p>
 
-                <div className="flex space-x-2 border-b border-border mt-6">
+                <div className="flex space-x-2 border-b-2 border-warm-border mt-8 relative">
                     {['Pending', 'Approved'].map((tab) => (
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
-                            className={`pb-3 px-6 text-sm font-bold transition-colors relative ${activeTab === tab ? 'text-primary' : 'text-text-secondary hover:text-primary'}`}
+                            className={`pb-4 px-6 text-sm font-bold uppercase tracking-widest transition-colors relative ${activeTab === tab ? 'text-charcoal' : 'text-text-secondary hover:text-charcoal'}`}
                         >
                             {tab}
                             {activeTab === tab && (
-                                <div className="absolute bottom-0 left-0 w-full h-1 bg-accent rounded-t-full"></div>
+                                <div className="absolute bottom-0 left-0 w-full h-[3px] bg-charcoal"></div>
                             )}
                         </button>
                     ))}
                 </div>
             </div>
 
-            <div className="flex-1 overflow-auto">
+            <div className="flex-1 overflow-auto mt-4">
                 {isLoading ? (
                     <Loader type="spinner" />
                 ) : (
@@ -123,30 +123,30 @@ const Compliance = () => {
                         {currentDocs.map((doc, i) => (
                             <div
                                 key={doc.id}
-                                className="bg-white p-6 rounded-2xl shadow-sm border border-border flex flex-col justify-between hover:shadow-md transition-shadow animate-fadeInUp"
+                                className="bg-cream-card p-6 rounded-none shadow-sm border border-warm-border flex flex-col justify-between hover:shadow-md transition-shadow animate-fadeInUp"
                                 style={{ animationDelay: `${i * 100}ms` }}
                             >
                                 <div className="flex justify-between items-start mb-6">
                                     <div className="flex gap-4">
-                                        <div className="w-12 h-12 bg-surface-muted text-primary rounded-xl flex items-center justify-center shrink-0 border border-border">
+                                        <div className="w-12 h-12 bg-cream-deep text-charcoal rounded-none flex items-center justify-center shrink-0 border border-warm-border">
                                             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                             </svg>
                                         </div>
                                         <div>
-                                            <h4 className="font-bold text-lg text-primary leading-tight mb-1">{doc.title}</h4>
+                                            <h4 className="font-bold text-lg text-charcoal leading-tight mb-1">{doc.title}</h4>
                                             <p className="text-sm font-medium text-text-secondary">By {doc.uploadedBy} • {doc.date}</p>
                                         </div>
                                     </div>
 
-                                    <div className={`flex items-center gap-1.5 px-3 py-1 bg-surface-muted rounded-full text-xs font-bold border border-border`}>
-                                        <div className={`w-2 h-2 rounded-full ${doc.status === 'Approved' ? 'bg-success' : 'bg-warning animate-pulseRing'}`}></div>
-                                        {doc.status}
+                                    <div className={`flex items-center gap-1.5 px-3 py-1 bg-cream-deep rounded-none text-[10px] uppercase tracking-widest font-bold border border-warm-border`}>
+                                        <div className={`w-2 h-2 rounded-none ${doc.status === 'Approved' ? 'bg-sage-deep' : 'bg-amber-gold animate-pulseRing'}`}></div>
+                                        <span className="text-charcoal">{doc.status}</span>
                                     </div>
                                 </div>
 
-                                <div className="flex items-center justify-between mt-auto pt-6 border-t border-border">
-                                    <a href={doc.url} className="flex items-center gap-2 text-primary font-bold hover:text-accent transition text-sm">
+                                <div className="flex items-center justify-between mt-auto pt-6 border-t border-warm-border">
+                                    <a href={doc.url} className="flex items-center gap-2 text-charcoal font-bold hover:text-sage-deep transition text-sm uppercase tracking-wider">
                                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                                         </svg>
@@ -157,14 +157,14 @@ const Compliance = () => {
                                         <button
                                             onClick={() => handleApprove(doc.id)}
                                             disabled={approvingId === doc.id}
-                                            className="bg-accent text-primary px-6 py-2 rounded-xl font-bold hover:bg-teal-400 active:scale-[0.98] transition disabled:opacity-70 disabled:active:scale-100 flex items-center justify-center min-w-[120px]"
+                                            className="bg-charcoal text-cream-white px-6 py-3 rounded-none font-bold uppercase tracking-widest hover:bg-espresso active:scale-[0.98] transition disabled:opacity-70 disabled:active:scale-100 flex items-center justify-center min-w-[140px]"
                                         >
                                             {approvingId === doc.id ? (
-                                                <svg className="animate-spin h-5 w-5 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                <svg className="animate-spin h-5 w-5 text-cream-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 24 24">
                                                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                                 </svg>
-                                            ) : 'Approve'}
+                                            ) : 'Authorize'}
                                         </button>
                                     )}
                                 </div>
@@ -173,13 +173,13 @@ const Compliance = () => {
 
                         {currentDocs.length === 0 && (
                             <div className="col-span-full py-20 text-center">
-                                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 border border-border shadow-sm text-accent">
+                                <div className="w-16 h-16 bg-cream-card rounded-none flex items-center justify-center mx-auto mb-6 border border-warm-border shadow-sm text-sage-mist">
                                     <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-bold text-primary mb-2">All Caught Up!</h3>
-                                <p className="text-text-secondary">There are no {activeTab.toLowerCase()} documents right now.</p>
+                                <h3 className="text-2xl font-display font-bold text-charcoal mb-2">All Caught Up!</h3>
+                                <p className="text-text-secondary tracking-wide">There are no {activeTab.toLowerCase()} documents right now.</p>
                             </div>
                         )}
                     </div>

@@ -40,12 +40,17 @@ const Register = () => {
 
         setIsLoading(true);
         try {
-            // Mock registration logic or hit API endpoint
-            // await api.post('/register/', formData);
-            toast.success('Registration successful! Please login.');
-            navigate('/login');
+            const res = await api.post('/accounts/register/', formData);
+            if (res.status === 201) {
+                toast.success('Registration successful! Please authenticate.');
+                navigate('/login');
+            } else {
+                toast.error('Registration failed. Try again.');
+            }
         } catch (error) {
-            toast.error('Registration failed. Try again.');
+            console.error('Registration error:', error.response?.data);
+            const errorMsg = error.response?.data?.email?.[0] || error.response?.data?.detail || 'Registration failed. Try again.';
+            toast.error(errorMsg);
         } finally {
             setIsLoading(false);
         }

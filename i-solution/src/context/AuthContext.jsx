@@ -32,15 +32,20 @@ export const AuthProvider = ({ children }) => {
         try {
             const res = await api.post('/accounts/login/', { email, password });
             const { access, refresh } = res.data;
-            localStorage.setItem('access', access);
-            localStorage.setItem('refresh', refresh);
-            const decoded = jwtDecode(access);
-            setUser(decoded.user_id || decoded.email);
-            setRole(decoded.role || 'customer');
-            setIsAuthenticated(true);
-            return { success: true };
+            if (access && refresh) {
+                localStorage.setItem('access', access);
+                localStorage.setItem('refresh', refresh);
+                const decoded = jwtDecode(access);
+                setUser(decoded.user_id || decoded.email);
+                setRole(decoded.role || 'customer');
+                setIsAuthenticated(true);
+                return { success: true };
+            } else {
+                return { success: false, error: 'Invalid response from server' };
+            }
         } catch (error) {
-            return { success: false, error: 'Login failed' };
+            console.error('Login error:', error.response?.data);
+            return { success: false, error: error.response?.data?.detail || 'Login failed. Please check credentials.' };
         }
     };
 

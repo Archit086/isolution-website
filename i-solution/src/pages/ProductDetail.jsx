@@ -2,18 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext';
+import { useCart } from '../context/CartContext';
 import api from '../api/axios';
 import Loader from '../components/Loader';
 
 const ProductDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated, role } = useAuth();
+    const { addToCart } = useCart();
 
     const [product, setProduct] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [qty, setQty] = useState(1);
-    const [isOrdering, setIsOrdering] = useState(false);
 
     useEffect(() => {
         fetchProduct();
@@ -25,53 +26,37 @@ const ProductDetail = () => {
             const res = await api.get(`/products/${id}/`);
             setProduct(res.data);
         } catch (e) {
-            // Mock Data 
-            setTimeout(() => {
-                setProduct({
-                    id,
-                    name: 'Amoxicillin 500mg - Extended Release Formulation',
-                    desc: 'A powerful, broad-spectrum antibiotic used to treat numerous bacterial infections. Formulated for extended release and maximum efficacy. Comes in a secure, tamper-evident package directly sourced from primary manufacturers.',
-                    price: 12.50,
-                    category: 'Antibiotics',
-                    stock: 150,
-                    complianceStatus: 'Pending',
-                    manufacturer: 'PharmaCorp Global',
-                    dosage_form: 'Capsule',
-                    storage: 'Store below 25°C',
-                    rx_required: true,
-                    document_url: '#'
-                });
-                setIsLoading(false);
-            }, 600);
+            console.error('Failed to fetch product details:', e);
+            setProduct(null);
+            toast.error('Failed to load product details.');
+        } finally {
+            setIsLoading(false);
         }
     };
 
-    const handleOrder = async () => {
+    const handleAddToCart = () => {
         if (!isAuthenticated) {
-            toast.info('Please log in to place an order');
+            toast.info('Please log in to add items to your cart.');
             navigate('/login');
             return;
         }
+
+        if (role !== 'customer' && role !== 'distributor') {
+            toast.error('Only customers or distributors can authorize allocations.');
+            return;
+        }
+
         if (qty > product.stock) {
             toast.error('Requested quantity exceeds available stock');
             return;
         }
 
-        setIsOrdering(true);
-        try {
-            await api.post('/orders/', { items: [{ product: product.id, quantity: qty }] });
-            toast.success('Order placed successfully!');
-            setProduct(prev => ({ ...prev, stock: prev.stock - qty }));
-            setQty(1);
-        } catch (e) {
-            toast.error('Failed to process order. Try again.');
-        } finally {
-            setIsOrdering(false);
-        }
+        addToCart(product, qty);
     };
 
     if (isLoading) return <Loader type="spinner" />;
     if (!product) return <div className="p-12 text-center text-xl text-text-secondary">Product not found.</div>;
+
 
     return (
         <div className="bg-cream-base min-h-screen py-16 px-6 font-body">
@@ -180,11 +165,11 @@ const ProductDetail = () => {
                                 <div className="flex-1">
                                     {isAuthenticated ? (
                                         <button
-                                            onClick={handleOrder}
-                                            disabled={isOrdering || product.stock === 0}
+                                            onClick={handleAddToCart}
+                                            disabled={product.stock === 0}
                                             className="w-full h-[56px] bg-charcoal text-cream-white border border-charcoal font-bold uppercase tracking-widest hover:bg-espresso active:scale-[0.99] disabled:opacity-50 disabled:active:scale-100 transition shadow-none flex items-center justify-center text-xs"
                                         >
-                                            {isOrdering ? <Loader type="spinner" /> : (product.stock === 0 ? 'Out of Stock' : `Authorize ${qty} Units`)}
+                                            {product.stock === 0 ? 'Out of Stock' : `Add ${qty} Units to Cart`}
                                         </button>
                                     ) : (
                                         <button

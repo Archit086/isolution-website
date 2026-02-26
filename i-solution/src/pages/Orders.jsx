@@ -18,25 +18,23 @@ const Orders = () => {
     const fetchOrders = async () => {
         setIsLoading(true);
         try {
-            // Mock API call
-            setTimeout(() => {
-                const data = [
-                    { id: 'ORD-5829', customer: 'John Smith', product: 'Amoxicillin 500mg', qty: 200, status: 'Completed', date: '2023-10-24' },
-                    { id: 'ORD-5830', customer: 'HealthPlus Pharmacy', product: 'Ibuprofen 400mg', qty: 5000, status: 'Pending', date: '2023-10-25' },
-                    { id: 'ORD-5831', customer: 'Alice Wong', product: 'Lisinopril 10mg', qty: 10, status: 'Shipped', date: '2023-10-26' },
-                ];
+            const res = await api.get('/orders/');
+            const data = res.data.results || res.data || [];
 
-                const filtered = activeTab === 'All'
-                    ? data
-                    : data.filter(o => {
-                        if (activeTab === 'Completed') return o.status === 'Completed' || o.status === 'Delivered';
-                        return o.status === activeTab;
-                    });
+            const filtered = activeTab === 'All'
+                ? data
+                : data.filter(o => {
+                    const statusMatch = (o.status || '').toLowerCase();
+                    const tabMatch = activeTab.toLowerCase();
+                    if (tabMatch === 'completed') return statusMatch === 'completed' || statusMatch === 'delivered';
+                    return statusMatch === tabMatch;
+                });
 
-                setOrders(filtered);
-                setIsLoading(false);
-            }, 400);
-        } catch {
+            setOrders(filtered);
+        } catch (error) {
+            console.error('Failed to fetch orders:', error);
+            setOrders([]);
+        } finally {
             setIsLoading(false);
         }
     };

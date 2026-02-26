@@ -18,29 +18,29 @@ const Compliance = () => {
     const fetchDocuments = async () => {
         setIsLoading(true);
         try {
-            setTimeout(() => {
-                setDocuments([
-                    { id: 'DOC-9921', title: 'FDA Approval - Amoxicillin Batch B', uploadedBy: 'PharmaCorp Global', date: 'Oct 24, 2023', status: 'Pending', url: '#' },
-                    { id: 'DOC-9922', title: 'Safety Cert - Ibuprofen 400mg', uploadedBy: 'HealthPlus Pharmacy', date: 'Oct 25, 2023', status: 'Pending', url: '#' },
-                    { id: 'DOC-9910', title: 'Import License - Lisinopril', uploadedBy: 'PharmaCorp Global', date: 'Oct 20, 2023', status: 'Approved', url: '#' },
-                ]);
-                setIsLoading(false);
-            }, 500);
-        } catch {
+            const res = await api.get('/compliance/pending/');
+            const data = res.data.results || res.data || [];
+            setDocuments(data);
+        } catch (error) {
+            console.error('Failed to fetch compliance documents:', error);
+            setDocuments([]);
+        } finally {
             setIsLoading(false);
         }
     };
 
     const handleApprove = async (id) => {
         setApprovingId(id);
-
-        // Simulate API delay
-        await new Promise(r => setTimeout(r, 600));
-
-        // Optimistic UI Update
-        setDocuments(docs => docs.map(d => d.id === id ? { ...d, status: 'Approved' } : d));
-        toast.success('Document approved successfully');
-        setApprovingId(null);
+        try {
+            await api.put(`/compliance/${id}/approve/`);
+            setDocuments(docs => docs.map(d => d.id === id ? { ...d, status: 'Approved' } : d));
+            toast.success('Document approved successfully');
+        } catch (error) {
+            console.error('Failed to approve document:', error);
+            toast.error('Failed to approve document.');
+        } finally {
+            setApprovingId(null);
+        }
     };
 
     const currentDocs = documents.filter(d => d.status === activeTab);

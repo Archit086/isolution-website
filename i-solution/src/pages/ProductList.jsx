@@ -24,24 +24,15 @@ const ProductList = () => {
     const fetchProducts = async () => {
         setIsLoading(true);
         try {
-            // Mocked endpoint behavior, adjust per backend
             const res = await api.get('/products/', {
                 params: { search: debouncedSearch, page, category: selectedCategory }
             });
             setProducts(res.data.results || []);
             setTotalPages(Math.ceil((res.data.count || 0) / 10));
         } catch (error) {
-            console.error('Failed to fetch products');
-            // Set some mock data for UI demo if backend is not connected
-            setProducts([
-                { id: 1, name: 'Amoxicillin 500mg', price: 12.50, category: 'Antibiotics', stock: 150, complianceStatus: 'Approved' },
-                { id: 2, name: 'Ibuprofen 400mg', price: 8.00, category: 'Painkillers', stock: 5, complianceStatus: 'Pending' },
-                { id: 3, name: 'Lisinopril 10mg', price: 15.75, category: 'Cardiovascular', stock: 0, complianceStatus: 'Approved' },
-                { id: 4, name: 'Metformin 850mg', price: 9.20, category: 'Diabetes', stock: 420, complianceStatus: 'Approved' },
-                { id: 5, name: 'Atorvastatin 20mg', price: 22.10, category: 'Cardiovascular', stock: 80, complianceStatus: 'Approved' },
-                { id: 6, name: 'Omeprazole 20mg', price: 14.30, category: 'Gastrointestinal', stock: 25, complianceStatus: 'Pending' }
-            ]);
-            setTotalPages(3);
+            console.error('Failed to fetch products:', error);
+            setProducts([]);
+            setTotalPages(1);
         } finally {
             setIsLoading(false);
         }

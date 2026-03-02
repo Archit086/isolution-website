@@ -58,13 +58,13 @@ const Login = () => {
             <div className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-12 animate-fadeInUp" style={{ animationDelay: '100ms' }}>
                 <div className="w-full max-w-md bg-cream-card rounded-xl border border-warm-border p-10 shadow-2xl">
                     <div className="text-center mb-10">
-                        <h2 className="text-4xl font-display font-extrabold text-charcoal mb-2">Authentication</h2>
+                        <h2 className="text-4xl font-display font-extrabold text-charcoal mb-2">Login</h2>
                         <p className="text-text-secondary font-medium tracking-wide">Enter your authorized credentials.</p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div>
-                            <label className="block text-xs font-bold text-text-secondary uppercase tracking-[0.15em] mb-2">Email Identity</label>
+                            <label className="block text-xs font-bold text-text-secondary uppercase tracking-[0.15em] mb-2">Email</label>
                             <input
                                 type="text"
                                 value={email}
@@ -76,7 +76,7 @@ const Login = () => {
                         </div>
 
                         <div>
-                            <label className="block text-xs font-bold text-text-secondary uppercase tracking-[0.15em] mb-2">Access Token</label>
+                            <label className="block text-xs font-bold text-text-secondary uppercase tracking-[0.15em] mb-2">Password</label>
                             <div className="relative">
                                 <input
                                     type={showPassword ? 'text' : 'password'}
@@ -105,9 +105,9 @@ const Login = () => {
                         <div className="flex items-center justify-between mt-6">
                             <label className="flex items-center gap-3 cursor-pointer group">
                                 <input type="checkbox" className="w-4 h-4 rounded-none text-sage-deep border-warm-border focus:ring-sage-deep transition cursor-pointer" />
-                                <span className="text-sm font-semibold text-text-secondary group-hover:text-charcoal transition tracking-wide">Remember Node</span>
+                                <span className="text-sm font-semibold text-text-secondary group-hover:text-charcoal transition tracking-wide">Remember Me</span>
                             </label>
-                            <button type="button" className="text-sm font-bold tracking-wide text-charcoal hover:text-sage-deep transition">Reset Token?</button>
+                            {/* <button type="button" className="text-sm font-bold tracking-wide text-charcoal hover:text-sage-deep transition">Reset Token?</button> */}
                         </div>
 
                         <button
@@ -115,12 +115,12 @@ const Login = () => {
                             disabled={isLoading}
                             className="w-full bg-amber-warm text-ink py-4 rounded-none uppercase tracking-[0.1em] font-extrabold mt-10 hover:bg-amber-gold active:scale-[0.98] transition flex justify-center items-center h-[56px] shadow-lg"
                         >
-                            {isLoading ? <Loader type="spinner" /> : 'Authenticate'}
+                            {isLoading ? <Loader type="spinner" /> : 'Login'}
                         </button>
                     </form>
 
                     <p className="text-center mt-10 text-sm text-text-secondary font-medium tracking-wide">
-                        Require provisioning? <Link to="/register" className="text-sage-deep font-bold border-b border-sage-deep hover:text-ink hover:border-ink transition-colors pb-0.5">Initialize Account</Link>
+                        New User? <Link to="/register" className="text-sage-deep font-bold border-b border-sage-deep hover:text-ink hover:border-ink transition-colors pb-0.5">Create Account</Link>
                     </p>
                 </div>
             </div>

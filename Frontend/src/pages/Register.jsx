@@ -96,13 +96,13 @@ const Register = () => {
             <div className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-12 animate-fadeInUp overflow-y-auto h-screen" style={{ animationDelay: '100ms' }}>
                 <div className="w-full max-w-md bg-cream-card rounded-xl border border-warm-border p-10 my-auto shadow-2xl">
                     <div className="text-center mb-8">
-                        <h2 className="text-4xl font-display font-bold text-charcoal mb-2">Network Initialization</h2>
+                        <h2 className="text-4xl font-display font-bold text-charcoal mb-2">Create Account</h2>
                         <p className="text-text-secondary font-medium tracking-wide">Register your operational role.</p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div>
-                            <label className="block text-xs font-bold text-text-secondary uppercase tracking-[0.15em] mb-2">Entity Name</label>
+                            <label className="block text-xs font-bold text-text-secondary uppercase tracking-[0.15em] mb-2">UserName</label>
                             <input
                                 type="text" name="name" value={formData.name} onChange={handleChange}
                                 className={`w-full px-4 py-3 rounded-none border-b-2 bg-transparent focus:bg-cream-deep focus:border-sage-deep outline-none transition-colors ${errors.name ? 'border-terracotta' : 'border-warm-border'}`}
@@ -112,7 +112,7 @@ const Register = () => {
                         </div>
 
                         <div>
-                            <label className="block text-xs font-bold text-text-secondary uppercase tracking-[0.15em] mb-2">Email Identity</label>
+                            <label className="block text-xs font-bold text-text-secondary uppercase tracking-[0.15em] mb-2">Email</label>
                             <input
                                 type="text" name="email" value={formData.email} onChange={handleChange}
                                 className={`w-full px-4 py-3 rounded-none border-b-2 bg-transparent focus:bg-cream-deep focus:border-sage-deep outline-none transition-colors ${errors.email ? 'border-terracotta' : 'border-warm-border'}`}
@@ -123,7 +123,7 @@ const Register = () => {
 
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <label className="block text-xs font-bold text-text-secondary uppercase tracking-[0.15em] mb-2">Access Token</label>
+                                <label className="block text-xs font-bold text-text-secondary uppercase tracking-[0.15em] mb-2">Password</label>
                                 <input
                                     type="password" name="password" value={formData.password} onChange={handleChange}
                                     className={`w-full px-4 py-3 rounded-none border-b-2 bg-transparent focus:bg-cream-deep focus:border-sage-deep outline-none transition-colors ${errors.password ? 'border-terracotta' : 'border-warm-border'}`}
@@ -133,7 +133,7 @@ const Register = () => {
                             </div>
 
                             <div>
-                                <label className="block text-xs font-bold text-text-secondary uppercase tracking-[0.15em] mb-2">Verify</label>
+                                <label className="block text-xs font-bold text-text-secondary uppercase tracking-[0.15em] mb-2">Confirm Password</label>
                                 <input
                                     type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange}
                                     className={`w-full px-4 py-3 rounded-none border-b-2 bg-transparent focus:bg-cream-deep focus:border-sage-deep outline-none transition-colors ${errors.confirmPassword ? 'border-terracotta' : 'border-warm-border'}`}
@@ -159,12 +159,12 @@ const Register = () => {
                             disabled={isLoading}
                             className="w-full bg-amber-warm text-ink py-4 rounded-none uppercase tracking-[0.1em] font-extrabold mt-10 hover:bg-amber-gold active:scale-[0.98] transition flex justify-center items-center h-[56px] shadow-lg"
                         >
-                            {isLoading ? <Loader type="spinner" /> : 'Request Provisioning'}
+                            {isLoading ? <Loader type="spinner" /> : 'Create Account'}
                         </button>
                     </form>
 
                     <p className="text-center mt-10 text-sm text-text-secondary font-medium tracking-wide">
-                        Already initialized? <Link to="/login" className="text-sage-deep font-bold border-b border-sage-deep hover:text-ink hover:border-ink transition-colors pb-0.5">Authenticate</Link>
+                        Already initialized? <Link to="/login" className="text-sage-deep font-bold border-b border-sage-deep hover:text-ink hover:border-ink transition-colors pb-0.5">Login</Link>
                     </p>
                 </div>
             </div>

@@ -6,8 +6,11 @@ import ConfirmModal from '../components/ConfirmModal';
 import Pagination from '../components/Pagination';
 import Loader from '../components/Loader';
 import { useDebounce } from '../hooks/useDebounce';
+import { useAuth } from '../context/AuthContext';
 
 const Products = () => {
+    const { role } = useAuth();
+    const isDistributor = role === 'distributor';
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [search, setSearch] = useState('');
@@ -93,7 +96,9 @@ const Products = () => {
     return (
         <div className="flex flex-col h-full animate-fadeInUp font-body">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-                <h2 className="text-4xl font-display font-bold text-charcoal">Manage Products</h2>
+                <h2 className="text-4xl font-display font-bold text-charcoal">
+                    {isDistributor ? 'Bulk Products Catalog' : 'Manage Products'}
+                </h2>
 
                 <div className="flex w-full sm:w-auto gap-4">
                     <div className="relative w-full sm:w-64">
@@ -108,13 +113,15 @@ const Products = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </div>
-                    <button
-                        onClick={openAdd}
-                        className="whitespace-nowrap bg-charcoal text-cream-white px-5 py-2 rounded-none text-sm font-bold uppercase tracking-wider hover:bg-espresso active:scale-[0.98] transition flex items-center gap-2"
-                    >
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
-                        Add Product
-                    </button>
+                    {!isDistributor && (
+                        <button
+                            onClick={openAdd}
+                            className="whitespace-nowrap bg-charcoal text-cream-white px-5 py-2 rounded-none text-sm font-bold uppercase tracking-wider hover:bg-espresso active:scale-[0.98] transition flex items-center gap-2"
+                        >
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+                            Add Product
+                        </button>
+                    )}
                 </div>
             </div>
 
@@ -131,7 +138,7 @@ const Products = () => {
                                     <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-[0.1em]">Price</th>
                                     <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-[0.1em]">Stock</th>
                                     <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-[0.1em]">Status</th>
-                                    <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-[0.1em] text-right">Actions</th>
+                                    {!isDistributor && <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-[0.1em] text-right">Actions</th>}
                                 </tr>
                             </thead>
                             <tbody>
@@ -139,7 +146,7 @@ const Products = () => {
                                     <tr key={p.id} className="border-b border-warm-border last:border-0 hover:bg-cream-white transition-colors group animate-fadeInUp" style={{ animationDelay: `${index * 40}ms` }}>
                                         <td className="py-4 px-6 font-bold text-charcoal">{p.name}</td>
                                         <td className="py-4 px-6"><span className="text-[10px] font-bold uppercase tracking-widest border border-amber-soft text-amber-gold bg-amber-soft/10 px-3 py-1 rounded-none">{p.category}</span></td>
-                                        <td className="py-4 px-6 font-display font-bold text-charcoal">${p.price.toFixed(2)}</td>
+                                        <td className="py-4 px-6 font-display font-bold text-charcoal">${parseFloat(p.price).toFixed(2)}</td>
                                         <td className="py-4 px-6">
                                             <span className={`px-3 py-1 text-[10px] uppercase tracking-widest font-bold border rounded-none ${p.stock === 0 ? 'border-terracotta text-terracotta bg-terracotta/5' : p.stock < 10 ? 'border-[#C2A345] text-[#C2A345] bg-[#C2A345]/5' : 'border-sage-deep text-sage-deep bg-sage-deep/5'}`}>
                                                 {p.stock === 0 ? '0 (Out)' : p.stock}
@@ -151,15 +158,17 @@ const Products = () => {
                                                 <span className="text-sm font-semibold text-charcoal tracking-wide">{p.complianceStatus}</span>
                                             </div>
                                         </td>
-                                        <td className="py-4 px-6 text-right space-x-3">
-                                            <button onClick={() => openEdit(p)} className="text-text-secondary hover:text-charcoal font-bold uppercase tracking-widest text-xs transition">Edit</button>
-                                            <button onClick={() => { setProductToDelete(p); setDeleteModalOpen(true); }} className="text-text-secondary hover:text-terracotta font-bold uppercase tracking-widest text-xs transition">Delete</button>
-                                        </td>
+                                        {!isDistributor && (
+                                            <td className="py-4 px-6 text-right space-x-3">
+                                                <button onClick={() => openEdit(p)} className="text-text-secondary hover:text-charcoal font-bold uppercase tracking-widest text-xs transition">Edit</button>
+                                                <button onClick={() => { setProductToDelete(p); setDeleteModalOpen(true); }} className="text-text-secondary hover:text-terracotta font-bold uppercase tracking-widest text-xs transition">Delete</button>
+                                            </td>
+                                        )}
                                     </tr>
                                 ))}
                                 {products.length === 0 && (
                                     <tr>
-                                        <td colSpan="6" className="py-12 text-center text-text-secondary">No products cataloged.</td>
+                                        <td colSpan={isDistributor ? 5 : 6} className="py-12 text-center text-text-secondary">No products cataloged.</td>
                                     </tr>
                                 )}
                             </tbody>

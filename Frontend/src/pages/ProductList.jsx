@@ -5,9 +5,11 @@ import { useDebounce } from '../hooks/useDebounce';
 import ProductCard from '../components/ProductCard';
 import Pagination from '../components/Pagination';
 import Loader from '../components/Loader';
+import { useAuth } from '../context/AuthContext';
 
 const ProductList = () => {
     const navigate = useNavigate();
+    const { isAuthenticated } = useAuth();
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [search, setSearch] = useState('');
@@ -43,7 +45,7 @@ const ProductList = () => {
 
             {/* Sidebar Filter Panel */}
             <aside className="w-full md:w-[260px] bg-cream-card border-r border-warm-border p-6 h-auto md:h-screen md:sticky top-0 shrink-0">
-                <h1 className="text-3xl font-script text-sage-mist italic mb-8 cursor-pointer hover:text-charcoal transition-colors" onClick={() => navigate('/')}>I-Solution</h1>
+                <h1 className="text-3xl font-script text-sage-mist italic mb-8 cursor-pointer hover:text-charcoal transition-colors" onClick={() => navigate(isAuthenticated ? '/dashboard' : '/')}>I-Solution</h1>
 
                 <div className="mb-6">
                     <label className="text-xs font-bold text-text-secondary uppercase tracking-[0.1em] mb-4 block">Classifications</label>
@@ -67,6 +69,16 @@ const ProductList = () => {
                         ))}
                     </div>
                 </div>
+
+                <button
+                    onClick={() => navigate(isAuthenticated ? '/dashboard' : '/')}
+                    className="w-full py-4 text-xs font-bold uppercase tracking-widest border border-charcoal text-charcoal hover:bg-charcoal hover:text-cream-white transition-colors mb-4 flex items-center justify-center gap-2"
+                >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    {isAuthenticated ? 'Back to Dashboard' : 'Back to Homepage'}
+                </button>
 
                 <button
                     onClick={() => { setSelectedCategory(''); setSearch(''); setPage(1); }}

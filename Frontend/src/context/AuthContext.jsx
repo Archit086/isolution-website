@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
         if (token) {
             try {
                 const decoded = jwtDecode(token);
-                setUser(decoded.user_id || decoded.email);
+                setUser(decoded.email || decoded.user_id);
                 setRole(decoded.role || 'customer'); // default to customer or adjust
                 setIsAuthenticated(true);
             } catch (err) {
@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
                 localStorage.setItem('access', access);
                 localStorage.setItem('refresh', refresh);
                 const decoded = jwtDecode(access);
-                setUser(decoded.user_id || decoded.email);
+                setUser(decoded.email || decoded.user_id);
                 setRole(decoded.role || 'customer');
                 setIsAuthenticated(true);
                 return { success: true };

@@ -40,8 +40,11 @@ function App() {
               <Route index element={<Dashboard />} />
 
               <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
-                <Route path="products" element={<Products />} />
                 <Route path="users" element={<Users />} />
+              </Route>
+
+              <Route element={<ProtectedRoute allowedRoles={['admin', 'distributor']} />}>
+                <Route path="products" element={<Products />} />
               </Route>
 
               <Route element={<ProtectedRoute allowedRoles={['admin', 'customer', 'distributor']} />}>

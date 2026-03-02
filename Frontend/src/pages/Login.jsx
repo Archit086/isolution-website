@@ -57,6 +57,12 @@ const Login = () => {
 
             <div className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-12 animate-fadeInUp" style={{ animationDelay: '100ms' }}>
                 <div className="w-full max-w-md bg-cream-card rounded-xl border border-warm-border p-10 shadow-2xl">
+                    <Link to="/" className="inline-flex items-center gap-2 text-xs font-bold text-text-secondary uppercase tracking-widest hover:text-charcoal transition mb-6">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        Back to Home
+                    </Link>
                     <div className="text-center mb-10">
                         <h2 className="text-4xl font-display font-extrabold text-charcoal mb-2">Login</h2>
                         <p className="text-text-secondary font-medium tracking-wide">Enter your authorized credentials.</p>

@@ -74,8 +74,8 @@ const Dashboard = () => {
     return (
         <div>
             <div className="mb-8 font-body">
-                <h1 className="text-4xl font-display font-bold text-charcoal mb-2">Welcome Back, {user || 'User'}</h1>
-                <p className="text-text-secondary font-medium tracking-wide">Infrastructure and provisioning overview.</p>
+                <h1 className="text-4xl font-display font-semibold text-brand-primary mb-2">Welcome Back, {user || 'User'}</h1>
+                <p className="text-brand-body font-medium tracking-wide">Infrastructure and provisioning overview.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">

@@ -1,10 +1,11 @@
 import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const Sidebar = () => {
     const { role, logout, user } = useAuth();
     const location = useLocation();
+    const navigate = useNavigate();
 
     const getNavItems = () => {
         switch (role) {
@@ -39,9 +40,9 @@ const Sidebar = () => {
     const navItems = getNavItems();
 
     return (
-        <div className="w-64 bg-charcoal text-cream-white h-screen flex flex-col pt-6 fixed left-0 top-0 shadow-xl z-20">
-            <div className="px-6 mb-8">
-                <h1 className="text-2xl font-bold font-display text-cream-white tracking-tight">I-Solution</h1>
+        <div className="w-64 bg-brand-dark text-brand-primary h-screen flex flex-col pt-6 fixed left-0 top-0 shadow-xl z-20">
+            <div className="px-6 mb-8 cursor-pointer" onClick={() => navigate(location.pathname.startsWith('/dashboard') ? '/dashboard' : '/')}>
+                <img src="/isolution-logo.png" alt="I-Solution Logo" className="h-[90px] -ml-2 w-auto object-contain" />
             </div>
 
             <div className="flex-1 overflow-y-auto px-2 space-y-2">

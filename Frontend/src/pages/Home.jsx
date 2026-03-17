@@ -28,29 +28,29 @@ const FeatureCard = ({ title, desc, icon, index }) => {
     const ref = useParallaxX(driftSpeed);
 
     return (
-        <div ref={ref} className="bg-cream-card p-8 rounded-xl ring-1 ring-warm-border hover:shadow-[0_8px_32px_rgba(44,36,22,0.10)] hover:-translate-y-1 transition-all duration-300 parallax-layer">
-            <div className="w-12 h-12 bg-sage-mist text-sage-deep rounded-none flex items-center justify-center mb-6">
+        <div ref={ref} className="bg-brand-dark/50 border border-warm-border/30 p-8 rounded-xl hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all duration-300 parallax-layer">
+            <div className="w-12 h-12 bg-sage-deep/20 text-sage-mist rounded-none flex items-center justify-center mb-6">
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={icon} /></svg>
             </div>
-            <h4 className="text-xl font-display font-bold text-charcoal mb-3">{title}</h4>
-            <p className="text-text-secondary leading-relaxed font-body">{desc}</p>
+            <h4 className="text-xl font-display font-bold text-brand-primary mb-3">{title}</h4>
+            <p className="text-brand-body leading-relaxed font-body">{desc}</p>
         </div>
     );
 };
 
 const ServiceCard = () => {
     return (
-        <div className="bg-cream-card border border-warm-border p-5 shadow-2xl rounded-none w-64">
+        <div className="bg-brand-dark border border-warm-border p-5 shadow-2xl rounded-none w-64">
             <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-sage-mist rounded-full flex items-center justify-center text-sage-deep">
+                <div className="w-10 h-10 bg-sage-deep/20 rounded-full flex items-center justify-center text-sage-mist">
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 </div>
                 <div>
-                    <div className="text-xs text-text-secondary uppercase tracking-widest font-bold">Secure</div>
-                    <div className="text-charcoal font-display font-bold">Compliance</div>
+                    <div className="text-xs text-brand-body uppercase tracking-widest font-bold">Secure</div>
+                    <div className="text-brand-primary font-display font-bold">Compliance</div>
                 </div>
             </div>
-            <div className="h-1 bg-warm-border w-full rounded-full overflow-hidden">
+            <div className="h-1 bg-warm-border/30 w-full rounded-full overflow-hidden">
                 <div className="h-full bg-amber-warm w-3/4"></div>
             </div>
         </div>
@@ -89,20 +89,19 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="min-h-screen font-body bg-cream-base text-ink overflow-x-hidden selection:bg-sage-mist selection:text-ink">
+        <div className="min-h-screen font-body bg-transparent text-cream-white overflow-x-hidden selection:bg-sage-mist selection:text-ink">
             {/* Public Navbar - Warm Theme transition */}
-            <nav className={`fixed top-0 w-full z-50 transition-colors duration-300 ${scrolled ? 'bg-charcoal shadow-md py-4' : 'bg-transparent py-6'}`}>
-                <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-                    <div className="flex relative items-center justify-center">
-                        <div className="absolute right-[-15px] top-[-5px] w-8 h-8 bg-sage-deep/20 rounded-full blur-md"></div>
-                        <div className={`text-2xl font-bold font-display tracking-tight z-10 ${scrolled ? 'text-cream-card' : 'text-charcoal'}`}>I-Solution</div>
+            <nav className="fixed top-0 w-full z-50 transition-all duration-300 bg-brand-dark shadow-md px-[40px] py-[18px]">
+                <div className="max-w-7xl mx-auto flex justify-between items-center">
+                    <div className="flex relative items-center justify-center cursor-pointer mr-8" onClick={() => navigate('/')}>
+                        <img src="/isolution-logo.png" alt="I-Solution Logo" className="h-[90px] w-auto object-contain z-10" />
                     </div>
-                    <div className={`flex gap-8 items-center font-medium ${scrolled ? 'text-cream-card' : 'text-charcoal'}`}>
-                        <button onClick={() => navigate('/')} className="hover:text-amber-warm transition">Home</button>
-                        <button onClick={() => navigate('/products')} className="hover:text-amber-warm transition">Products</button>
-                        <div className="w-px h-5 bg-warm-border"></div>
-                        <button onClick={() => navigate('/login')} className="hover:text-sage-deep transition">Login</button>
-                        <button onClick={() => navigate('/register')} className="bg-sage-deep text-cream-white px-6 py-2 rounded-none tracking-widest uppercase text-xs hover:bg-sage-mid active:scale-[0.98] transition font-semibold">
+                    <div className="flex gap-8 items-center font-medium text-brand-primary">
+                        <button onClick={() => navigate('/')} className="hover:text-brand-accent transition">Home</button>
+                        <button onClick={() => navigate('/products')} className="hover:text-brand-accent transition">Products</button>
+                        <div className="w-px h-5 bg-brand-body/50"></div>
+                        <button onClick={() => navigate('/login')} className="hover:text-brand-accent transition">Login</button>
+                        <button onClick={() => navigate('/register')} className="bg-sage-mid text-brand-primary px-6 py-2 rounded-none tracking-widest uppercase text-xs hover:bg-sage-light active:scale-[0.98] transition font-semibold">
                             Register
                         </button>
                     </div>
@@ -110,7 +109,7 @@ const Home = () => {
             </nav>
 
             {/* 1. HERO SECTION - 5 Layer Parallax */}
-            <section className="relative h-screen overflow-hidden bg-cream-deep">
+            <section className="relative h-screen overflow-hidden bg-transparent">
                 {/* Layer 1: Background Blur Fixed */}
                 <div
                     ref={blurLayer}
@@ -131,15 +130,15 @@ const Home = () => {
                 {/* Layer 4: Content Moves opposite to scroll */}
                 <div ref={contentUp} className="absolute inset-0 flex items-center justify-center px-6 parallax-layer">
                     <div className="text-center max-w-4xl pt-16">
-                        <p className="font-script text-3xl md:text-5xl text-sage-deep mb-4 md:mb-6 animate-fadeInUp shadow-sm">Integrity. Efficacy. Trust.</p>
-                        <h1 className="font-display text-5xl md:text-7xl text-ink font-extrabold mb-8 animate-fadeInUp leading-tight" style={{ animationDelay: '100ms' }}>
-                            A Modern Era of <br /><span className="text-charcoal relative inline-block">Pharmaceutical Care</span>
+                        <p className="font-script text-3xl md:text-5xl text-brand-accent mb-4 md:mb-6 animate-fadeInUp shadow-sm">Integrity. Efficacy. Trust.</p>
+                        <h1 className="font-display text-5xl md:text-7xl text-brand-primary font-extrabold mb-8 animate-fadeInUp leading-tight" style={{ animationDelay: '100ms' }}>
+                            A Modern Era of <br /><span className="text-brand-secondary relative inline-block">Pharmaceutical Care</span>
                         </h1>
-                        <p className="font-body text-lg text-text-secondary mb-12 max-w-2xl mx-auto animate-fadeInUp" style={{ animationDelay: '200ms' }}>
+                        <p className="font-body text-lg text-brand-body mb-12 max-w-2xl mx-auto animate-fadeInUp" style={{ animationDelay: '200ms' }}>
                             Discover our curated inventory of clinical formulations. Managed by experts, verified by authorities, delivered directly to your practice.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fadeInUp" style={{ animationDelay: '300ms' }}>
-                            <button onClick={() => navigate('/products')} className="bg-sage-deep text-cream-white tracking-[0.1em] uppercase text-xs font-semibold px-8 py-4 rounded-none hover:bg-sage-mid active:scale-[0.98] transition border border-sage-deep shadow-xl">
+                            <button onClick={() => navigate('/products')} className="bg-sage-deep text-brand-primary tracking-[0.1em] uppercase text-xs font-semibold px-8 py-4 rounded-none hover:bg-sage-mid active:scale-[0.98] transition border border-sage-deep shadow-xl">
                                 Explore Formulation
                             </button>
                             <button onClick={() => navigate('/dashboard')} className="bg-transparent border border-warm-border text-sage-deep tracking-[0.1em] uppercase text-xs font-semibold px-8 py-4 rounded-none hover:bg-cream-card active:scale-[0.98] transition">
@@ -156,7 +155,7 @@ const Home = () => {
             </section>
 
             {/* 2. STATS SECTION */}
-            <section className="relative px-6 py-16 bg-cream-card overflow-hidden border-t-4 border-amber-warm">
+            <section className="relative px-6 py-16 bg-brand-dark overflow-hidden border-t-4 border-amber-warm shadow-inner">
                 <div ref={statsGrain} className="grain-bg parallax-layer opacity-40"></div>
 
                 <div ref={statsLeaf} className="absolute -top-12 -right-12 text-sage-mist opacity-50 parallax-layer">
@@ -164,70 +163,66 @@ const Home = () => {
                 </div>
 
                 <div className="max-w-6xl mx-auto relative z-10">
-                    <div ref={statsNum} className="grid grid-cols-1 md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-warm-border parallax-layer">
+                    <div ref={statsNum} className="grid grid-cols-1 md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-warm-border/30 parallax-layer">
                         <Reveal delay={0}>
                             <div className="text-center pt-6 md:pt-0">
-                                <div className="text-5xl font-display font-bold text-ink mb-2"><AnimatedCounter target={12400} />+</div>
-                                <div className="text-secondary tracking-[0.12em] font-semibold uppercase text-xs text-text-secondary">Clinical Formulas</div>
+                                <div className="text-5xl font-display font-bold text-brand-primary mb-2"><AnimatedCounter target={12400} />+</div>
+                                <div className="text-secondary tracking-[0.12em] font-semibold uppercase text-xs text-brand-body">Clinical Formulas</div>
                             </div>
                         </Reveal>
                         <Reveal delay={150}>
                             <div className="text-center pt-6 md:pt-0">
-                                <div className="text-5xl font-display font-bold text-charcoal mb-2"><AnimatedCounter target={98} />%</div>
-                                <div className="text-secondary tracking-[0.12em] font-semibold uppercase text-xs text-text-secondary">Authority Approved</div>
+                                <div className="text-5xl font-display font-bold text-brand-secondary mb-2"><AnimatedCounter target={98} />%</div>
+                                <div className="text-secondary tracking-[0.12em] font-semibold uppercase text-xs text-brand-body">Authority Approved</div>
                             </div>
                         </Reveal>
                         <Reveal delay={300}>
                             <div className="text-center pt-6 md:pt-0">
-                                <div className="text-5xl font-display font-bold text-ink mb-2"><AnimatedCounter target={450} />+</div>
-                                <div className="text-secondary tracking-[0.12em] font-semibold uppercase text-xs text-text-secondary">Global Partners</div>
+                                <div className="text-5xl font-display font-bold text-brand-primary mb-2"><AnimatedCounter target={450} />+</div>
+                                <div className="text-secondary tracking-[0.12em] font-semibold uppercase text-xs text-brand-body">Global Partners</div>
                             </div>
                         </Reveal>
                     </div>
                 </div>
             </section>
 
-            {/* 3. ABOUT SECTION - 2D Parallax Watermark left, dots right */}
-            <section className="relative py-32 bg-cream-base overflow-hidden border-y border-warm-border">
-                <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 relative">
-                    {/* Left Frame */}
-                    <div className="relative h-[600px] flex items-center justify-center p-8">
-                        <div ref={aboutLeft} className="absolute inset-0 bg-sage-mist/30 border border-sage-mist parallax-layer rounded-none transform -rotate-1"></div>
-                        <div ref={aboutGhost} className="absolute left-[-20%] bottom-0 font-display text-9xl font-bold text-sage-deep/5 select-none parallax-layer whitespace-nowrap transform -rotate-90 origin-bottom-left">
-                            APOTHECARY
-                        </div>
-                        <img src="https://images.unsplash.com/photo-1563213126-a4273aed2016?auto=format&fit=crop&q=80&w=800" alt="Institutional Medical setup" className="relative z-10 w-full h-full object-cover shadow-2xl grayscale sepia-[0.3]" />
+            {/* 3. ABOUT SECTION - Clean 2-column grid */}
+            <section className="relative py-[80px] px-[10%] bg-transparent overflow-hidden border-y border-warm-border/30">
+                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-[60px]">
+                    {/* Left Frame - Image */}
+                    <div className="w-full flex justify-center">
+                        <img 
+                            src="https://images.unsplash.com/photo-1563213126-a4273aed2016?auto=format&fit=crop&q=80&w=800" 
+                            alt="Institutional Medical setup" 
+                            className="w-full h-auto max-h-[600px] rounded-[6px] object-cover shadow-2xl grayscale sepia-[0.3]" 
+                        />
                     </div>
 
                     {/* Right Content */}
-                    <div className="relative flex flex-col justify-center">
-                        <div ref={aboutDots} className="absolute -right-20 -top-20 opacity-30 parallax-layer hidden lg:block" style={{ backgroundImage: 'radial-gradient(#C26A45 2px, transparent 2px)', backgroundSize: '24px 24px', width: '300px', height: '300px' }}></div>
-
-                        <div ref={aboutContent} className="relative z-10 parallax-layer">
-                            <Reveal>
-                                <span className="font-script text-3xl text-amber-gold mb-2 block">Our Heritage</span>
-                                <h2 className="text-4xl lg:text-5xl font-display font-bold text-charcoal mb-8 leading-tight">Elevating Clinical <br /> Standards Since Inception</h2>
-                                <p className="text-lg text-text-secondary leading-relaxed mb-6">
-                                    I-Solution connects certified pharmaceutical manufacturers with stringent regulatory authorities and active distributors. We remove the friction from bulk ordering while ensuring absolute compliance track records.
-                                </p>
-                                <p className="text-lg text-text-secondary leading-relaxed mb-10">
-                                    Experience a tailored, role-based dashboard handling intensive CRUD operations elegantly.
-                                </p>
-                                <button className="border-b-2 border-sage-deep text-sage-deep uppercase tracking-widest font-bold text-sm pb-1 hover:text-ink hover:border-ink transition-colors">
-                                    Read The Manifesto &rarr;
-                                </button>
-                            </Reveal>
-                        </div>
+                    <div className="flex flex-col justify-center">
+                        <Reveal>
+                            <span className="font-script text-3xl text-brand-accent mb-2 block">Our Heritage</span>
+                            <h2 className="text-4xl lg:text-5xl font-display font-bold text-brand-primary mb-8 leading-tight">Elevating Clinical <br /> Standards Since Inception</h2>
+                            <p className="text-lg text-brand-body leading-relaxed mb-6">
+                                I-Solution connects certified pharmaceutical manufacturers with stringent regulatory authorities and active distributors. We remove the friction from bulk ordering while ensuring absolute compliance track records.
+                            </p>
+                            <p className="text-lg text-brand-body leading-relaxed mb-10">
+                                Experience a tailored, role-based dashboard handling intensive CRUD operations elegantly.
+                            </p>
+                            <button className="border-b-2 border-brand-accent text-brand-accent uppercase tracking-widest font-bold text-sm pb-1 hover:text-amber-gold hover:border-amber-gold transition-colors inline-block w-max">
+                                Read The Manifesto &rarr;
+                            </button>
+                        </Reveal>
                     </div>
                 </div>
             </section>
 
             {/* 4. FEATURES SECTION (Horizontal X Parallax) */}
-            <section className="py-32 px-6 max-w-7xl mx-auto bg-cream-base overflow-hidden">
+            <section className="py-32 px-6 max-w-7xl mx-auto bg-transparent overflow-hidden">
                 <Reveal>
                     <div className="text-center mb-20">
-                        <h2 className="text-4xl lg:text-5xl font-display font-bold text-charcoal mb-4">Architected for the Ecosystem</h2>
-                        <p className="text-text-secondary max-w-2xl mx-auto text-lg">Four distinct roles. One unified infrastructure.</p>
+                        <h2 className="text-4xl lg:text-5xl font-display font-bold text-brand-primary mb-4">Architected for the Ecosystem</h2>
+                        <p className="text-brand-body max-w-2xl mx-auto text-lg">Four distinct roles. One unified infrastructure.</p>
                     </div>
                 </Reveal>
 
@@ -272,8 +267,8 @@ const Home = () => {
 
                 <div ref={ctaContent} className="relative z-10 max-w-3xl mx-auto mt-8 parallax-layer">
                     <Reveal>
-                        <h2 className="text-4xl lg:text-6xl font-display font-bold text-cream-white mb-8 leading-tight">Secure Your Supply Chain Infrastructure.</h2>
-                        <button onClick={() => navigate('/register')} className="bg-amber-warm text-ink tracking-[0.1em] uppercase text-sm font-bold px-10 py-5 rounded-none hover:bg-amber-gold active:scale-[0.98] transition shadow-2xl">
+                        <h2 className="text-4xl lg:text-6xl font-display font-bold text-brand-primary mb-8 leading-tight">Secure Your Supply Chain Infrastructure.</h2>
+                        <button onClick={() => navigate('/register')} className="bg-brand-accent text-brand-dark tracking-[0.1em] uppercase text-sm font-bold px-10 py-5 rounded-none hover:bg-amber-gold active:scale-[0.98] transition shadow-2xl">
                             Request Implementation
                         </button>
                     </Reveal>

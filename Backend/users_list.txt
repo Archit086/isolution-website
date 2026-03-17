@@ -1,0 +1,39 @@
+==== Registered Users ====
+Total Users: 9
+
+User: testuser@example.com
+Role: Admin
+Password Hash: pbkdf2_sha256$1200000$TrunFpkSOaagxgukjBiQT9$MBAC2Eu54enaCqSHZDtH7OrgQdOOrkBGanLPNVd+NU0=
+--------------------------------------------------
+User: normaluser@example.com
+Role: Customer
+Password Hash: pbkdf2_sha256$1200000$rCdF4J2FuZGXKMo7vVrGvo$EjsYjesl2OTOWG6SIgj1nkGZ04n5tM2ZdccuVgiAHSQ=
+--------------------------------------------------
+User: customer@example.com
+Role: Customer
+Password Hash: pbkdf2_sha256$1200000$AiiH60uannVo6UoHSWQ4bQ$DR5KL5xzhE/ULSOCvIepqG3liRlmv1Zfj2PrG7I0fxo=
+--------------------------------------------------
+User: admin_test@example.com
+Role: Admin
+Password Hash: pbkdf2_sha256$1200000$fDyRlT3N1yXKVrtmzZDV39$1DEygmqdj3veZRDh6GUB5FSrmijSkWP/hqNQV7o0PQg=
+--------------------------------------------------
+User: auth_test@example.com
+Role: Authority
+Password Hash: pbkdf2_sha256$1200000$B0T00RedZqFxqvaqDUYx0n$NxcVH/O5K2KD5Lmeh+jLSkExfcbRnGVdUiilIdy5zHI=
+--------------------------------------------------
+User: cust_test@example.com
+Role: Customer
+Password Hash: pbkdf2_sha256$1200000$aQPVqeb9EUDUtSlzPy0m49$B9faLIxOmiRI6Qw5E6hLGTveO28fX7Noaq+m0H5qdw0=
+--------------------------------------------------
+User: admin@isolution.app
+Role: Admin
+Password Hash: pbkdf2_sha256$1000000$LRmIHLeUMEkpVQB9jK1zqQ$VrdoeuEM9A8arGelSDQfcw5IkmnzXMQmGymfzPlxqKY=
+--------------------------------------------------
+User: newtestuser@example.com
+Role: Customer
+Password Hash: pbkdf2_sha256$1000000$8lpT15RTTfXcoBf98YmEgc$oh9utYNdVJwjmnKE2GO6J8IUHsQqC6NJ45VzrdiiJ+M=
+--------------------------------------------------
+User: architsehgal8@gmail.com
+Role: Customer
+Password Hash: pbkdf2_sha256$1000000$pd0pTq5CWqXYIdJ6q8Cw5u$bWg9TnD4jaAx7z+QGtpjlWjhMbQ8kHZPtQMBPLlo5wE=
+--------------------------------------------------

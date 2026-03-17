@@ -10,7 +10,7 @@
   }
 
   body {
-    @apply font-body text-text-primary bg-cream-base antialiased;
+    @apply font-body text-cream-white bg-brand-dark antialiased;
   }
 }
 

@@ -34,6 +34,13 @@ export default {
                 warm: {
                     border: '#D5CEBC'
                 },
+                brand: {
+                    dark: '#47413E',
+                    primary: '#F5F5F5',
+                    secondary: '#E7DCC8',
+                    body: '#D0D0D0',
+                    accent: '#D8A23A'
+                },
                 text: {
                     primary: '#2C2416',
                     secondary: '#6B5E4A',

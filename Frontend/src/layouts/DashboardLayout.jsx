@@ -7,7 +7,7 @@ const DashboardLayout = () => {
     const location = useLocation();
 
     return (
-        <div className="flex h-screen overflow-hidden bg-cream-base">
+        <div className="flex h-screen overflow-hidden bg-transparent">
             <Sidebar />
             <div className="flex flex-col flex-1 sm:ml-64 relative">
                 <Navbar />

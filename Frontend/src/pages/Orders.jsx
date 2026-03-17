@@ -50,7 +50,7 @@ const Orders = () => {
     return (
         <div className="flex flex-col h-full animate-fadeInUp font-body">
             <div className="mb-6">
-                <h2 className="text-4xl font-display font-bold text-charcoal mb-2">
+                <h2 className="text-4xl font-display font-semibold text-[#F5F5F5] mb-2">
                     {role === 'customer' ? 'My Orders' : role === 'distributor' ? 'Bulk Provisions' : 'All Provisions'}
                 </h2>
 
@@ -60,53 +60,53 @@ const Orders = () => {
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
-                            className={`pb-4 px-6 text-sm font-bold uppercase tracking-widest transition-colors relative ${activeTab === tab ? 'text-charcoal' : 'text-text-secondary hover:text-charcoal'}`}
+                            className={`pb-4 px-6 text-sm font-bold uppercase tracking-widest transition-colors relative ${activeTab === tab ? 'text-[#F5F5F5]' : 'text-[#CFCFCF] hover:text-[#FFFFFF]'}`}
                         >
                             {tab}
                             {activeTab === tab && (
-                                <div className="absolute bottom-0 left-0 w-full h-[3px] bg-charcoal"></div>
+                                <div className="absolute bottom-0 left-0 w-full h-[3px] bg-[#E0B04B]"></div>
                             )}
                         </button>
                     ))}
                 </div>
             </div>
 
-            <div className="bg-cream-card rounded-none shadow-sm border border-warm-border flex-1 overflow-hidden flex flex-col">
+            <div className="bg-brand-dark/50 rounded-none shadow-sm border border-warm-border flex-1 overflow-hidden flex flex-col">
                 <div className="flex-1 overflow-auto">
                     {isLoading ? (
                         <Loader type="spinner" />
                     ) : (
                         <table className="w-full text-left border-collapse min-w-max">
-                            <thead className="sticky top-0 bg-cream-deep border-b-2 border-warm-border z-10">
+                            <thead className="sticky top-0 bg-brand-dark border-b-2 border-warm-border z-10">
                                 <tr>
-                                    <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-[0.1em]">Identifier</th>
-                                    {role !== 'customer' && <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-[0.1em]">Entity</th>}
-                                    <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-[0.1em]">Classification</th>
-                                    <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-[0.1em]">Volume</th>
-                                    <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-[0.1em]">Timestamp</th>
-                                    <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-[0.1em]">State</th>
-                                    {role === 'admin' && <th className="py-4 px-6 text-xs font-bold text-text-secondary uppercase tracking-[0.1em] text-right">Actions</th>}
+                                    <th className="py-4 px-6 text-xs font-semibold text-[#6B5F4C] uppercase tracking-[0.04em]">Identifier</th>
+                                    {role !== 'customer' && <th className="py-4 px-6 text-xs font-semibold text-[#6B5F4C] uppercase tracking-[0.04em]">Entity</th>}
+                                    <th className="py-4 px-6 text-xs font-semibold text-[#6B5F4C] uppercase tracking-[0.04em]">Classification</th>
+                                    <th className="py-4 px-6 text-xs font-semibold text-[#6B5F4C] uppercase tracking-[0.04em]">Volume</th>
+                                    <th className="py-4 px-6 text-xs font-semibold text-[#6B5F4C] uppercase tracking-[0.04em]">Timestamp</th>
+                                    <th className="py-4 px-6 text-xs font-semibold text-[#6B5F4C] uppercase tracking-[0.04em]">State</th>
+                                    {role === 'admin' && <th className="py-4 px-6 text-xs font-semibold text-[#6B5F4C] uppercase tracking-[0.04em] text-right">Actions</th>}
                                 </tr>
                             </thead>
                             <tbody>
                                 {orders.map((o, index) => (
-                                    <tr key={o.id} className="border-b border-warm-border last:border-0 hover:bg-cream-white transition-colors group animate-fadeInUp" style={{ animationDelay: `${index * 40}ms` }}>
-                                        <td className="py-4 px-6 font-mono font-bold text-charcoal text-sm">{o.id}</td>
-                                        {role !== 'customer' && <td className="py-4 px-6 text-sm font-bold text-ink">{o.customer}</td>}
-                                        <td className="py-4 px-6 text-sm text-text-secondary">{o.product}</td>
-                                        <td className="py-4 px-6 font-display font-bold text-charcoal">{o.qty}</td>
-                                        <td className="py-4 px-6 text-sm text-text-secondary">{o.date}</td>
+                                    <tr key={o.id} className="border-b border-warm-border/30 last:border-0 hover:bg-brand-dark transition-colors group animate-fadeInUp" style={{ animationDelay: `${index * 40}ms` }}>
+                                        <td className="py-4 px-6 font-mono font-bold text-[#F5F5F5] text-sm">{o.id}</td>
+                                        {role !== 'customer' && <td className="py-4 px-6 text-sm font-bold text-[#F5F5F5]">{o.customer}</td>}
+                                        <td className="py-4 px-6 text-sm text-[#D0D0D0]">{o.product}</td>
+                                        <td className="py-4 px-6 font-display font-bold text-[#F5F5F5]">{o.qty}</td>
+                                        <td className="py-4 px-6 text-sm text-[#D0D0D0]">{o.date}</td>
                                         <td className="py-4 px-6">{getStatusBadge(o.status)}</td>
                                         {role === 'admin' && (
                                             <td className="py-4 px-6 text-right">
-                                                <button className="text-terracotta hover:text-ink font-bold uppercase tracking-widest text-xs transition opacity-0 group-hover:opacity-100">Delete</button>
+                                                <button className="text-terracotta hover:text-[#F5F5F5] font-bold uppercase tracking-widest text-xs transition opacity-0 group-hover:opacity-100">Delete</button>
                                             </td>
                                         )}
                                     </tr>
                                 ))}
                                 {orders.length === 0 && (
                                     <tr>
-                                        <td colSpan={role === 'admin' ? 7 : (role === 'customer' ? 5 : 6)} className="py-12 text-center text-text-secondary">
+                                        <td colSpan={role === 'admin' ? 7 : (role === 'customer' ? 5 : 6)} className="py-12 text-center text-[#AFAFAF]">
                                             No provisions cataloged in this sector.
                                         </td>
                                     </tr>
